@@ -1,0 +1,239 @@
+.grid-container
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-template-rows: .5fr 0.75fr 1.5fr 1.5fr
+  grid-gap: 10px
+  padding: 10px
+
+.grid-image
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 1
+    grid-row-end: 2
+    display: inline-flex
+
+.grid-image .divImg
+    max-width: 75%
+    margin: auto
+
+.grid-image .divImg img
+    // width: 100%
+    border: 1px solid #000000
+    border-radius: 10px
+    margin-bottom: 5%
+    max-height: 25em
+    max-width: 35em
+
+.grid-info
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 1
+    grid-row-end: 2
+
+.editButton
+    margin-left: auto
+    margin-right: 10%
+    display: inherit
+
+.editPrintButton
+    height: 1em
+    margin-left: auto
+    margin-right: 10%
+    display: inherit
+
+.editPrintButton:hover
+    cursor: pointer
+
+.editImageUpload
+    height:1em
+    position: absolute
+    left: 45%
+
+.editImageUpload:hover
+    cursor: pointer
+
+.editButton button
+    background: #039be5
+    height: 9%
+    color: #ffffff
+    margin-left: 2%
+
+.editButton img
+    margin-right: 1em
+
+.editButton img:hover
+    cursor: pointer
+
+::ng-deep .cdk-overlay-container
+  z-index:2000
+
+.infoLayout
+    display: flex
+    height: 100%
+
+.infoLayout p
+    font-size: 18px
+    font-weight: 500
+
+.infoLayout span
+    font-size: 14px
+    font-weight: 300
+
+.grid-description
+    grid-column-start: 1
+    grid-column-end: 2
+    grid-row-start: 2
+    grid-row-end: 3
+
+.grid-description p
+    height: 80%
+    border: 1px solid #000000
+    border-radius: 10px
+    padding: 10px
+    width: 95%    
+    overflow-y: scroll
+
+.descriptionEdit
+    height:100%
+
+::ng-deep .descriptionEdit .mat-form-field
+    width: 100%
+    height: 87%
+    
+::ng-deep .descriptionEdit .mat-form-field .mat-form-field-wrapper
+    height: 100%
+    
+::ng-deep .descriptionEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex
+    height: 100%
+    
+::ng-deep .descriptionEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix
+    height: 100%
+    padding: 0px !important
+    
+::ng-deep .descriptionEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-input-element
+    height: 100%
+
+.grid-notes
+    grid-column-start: 2
+    grid-column-end: 3
+    grid-row-start: 2
+    grid-row-end: 3
+    
+.grid-notes p
+    height: 80%
+    border: 1px solid #000000
+    border-radius: 10px
+    padding: 10px
+    width: 95%
+    overflow-y: scroll
+
+.notesEdit
+    height:100%
+
+::ng-deep .notesEdit .mat-form-field
+    width: 100%
+    height: 87%
+    
+::ng-deep .notesEdit .mat-form-field .mat-form-field-wrapper
+    height: 100%
+    
+::ng-deep .notesEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex
+    height: 100%
+    
+::ng-deep .notesEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix
+    height: 100%
+    padding: 0px !important
+    
+::ng-deep .notesEdit .mat-form-field .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix .mat-input-element
+    height: 100%
+
+.grid-documents
+    grid-column-start: 1
+    grid-column-end: 3
+    grid-row-start: 3
+    grid-row-end: 4
+
+.fileContainer
+    width: 98%
+    height: 90%
+    border: 1px solid #000000
+    border-radius: 10px
+    overflow: hidden
+    overflow-y: scroll
+    display: flex
+    padding: 1em
+
+.documentIcons
+    width: 15%
+    height: 45%
+    margin-left: 2%
+
+.documentIcons img
+    width: 50%
+    margin-left: 25%
+
+.documentIcons p
+    overflow-wrap: anywhere
+    text-align: center
+
+.selectorUploadDocument:hover
+    cursor: pointer
+    width: 100%
+
+.selectorDownloadDocument
+    // cursor: pointer
+    width: 100%
+
+.selectorDownloadDocument img, .selectorDownloadDocument p
+    cursor: pointer
+
+.grid-links
+    grid-column-start: 1
+    grid-column-end: 3
+    grid-row-start: 4
+    grid-row-end: 5
+    
+.linksContainer
+    width: 98%
+    height: 90%
+    border: 1px solid #000000
+    border-radius: 10px
+    overflow: hidden
+    overflow-y: scroll
+    padding: 10px
+
+.linkText a:hover
+    cursor: pointer
+
+.linkText a
+    color: #000000
+
+.linkText img
+    cursor: pointer
+
+.selectorCreateLink:hover
+    text-decoration: underline
+
+.selectorCreateLink img
+    margin-left: 0px !important
+    margin-right: 5px
+
+.linkIcons
+    cursor: pointer
+
+.linkIcons img
+    height: 10px
+    margin-left: 5px
+
+.newLink
+    margin-left: 2em
+
+::ng-deep .newLinkInformation .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-infix
+    padding: 0px
+    padding-bottom: 3%
+
+::ng-deep .mat-form-field-outline
+    color: #000000 !important
+
+::ng-deep .mat-input-element:disabled
+    color: #000000 !important

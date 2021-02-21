@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server port="8005" shutdown="SHUTDOWN">
+  <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+<GlobalNamingResources>
+     <Resource name="UserDatabase"
+          auth="Container"
+          type="org.apache.catalina.UserDatabase"
+          description="User database that can be updated and saved"
+          factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
+          pathname="conf/tomcat-users.xml"
+     />
+</GlobalNamingResources>
+<Service name="Catalina">
+     <Connector
+     keystorePass="zx#asqw_TST456$"
+     keystoreFile="/opt/certs/tomcat.keystore"
+     connectionTimeout="50000"
+     port="8080"
+     protocol="org.apache.coyote.http11.Http11NioProtocol"
+     maxHttpHeaderSize="8129"
+     maxThreads="150"
+     maxPostSize="524288000"
+     minSpareThreads="25"
+     maxSpareThreads="75"
+     enableLookup="false"
+     disableUploadTimeout="true"
+     acceptCount="100"
+     scheme="http"
+     URIEncoding="UTF-8"
+     >
+     </Connector>
+<!-- Enable for SSL with Certificate Verification -->
+<!-- <Connector
+     clientAuth="true"
+     keystorePass="zx#asqw_TST456$"
+     keystoreFile="/opt/certs/tomcat.keystore"
+     truststorePass="changeit"
+     truststoreFile="/opt/certs/truststore.jks" 
+     truststoreType="jks" 
+     connectionTimeout="50000"
+     port="8443"
+     protocol="org.apache.coyote.http11.Http11NioProtocol"
+     maxHttpHeaderSize="8129"
+     maxThreads="150"
+     SSLEnabled="true"
+     maxPostSize="524288000"
+     minSpareThreads="25"
+     maxSpareThreads="75"
+     enableLookup="false"
+     disableUploadTimeout="true"
+     acceptCount="100"
+     scheme="https"
+     secure="true"
+     sslProtocol="TLS"
+     URIEncoding="UTF-8"
+     >
+</Connector> -->
+    <Connector port="8009" protocol="AJP/1.3"  secretRequired="false"/>
+    <Engine name="Catalina" defaultHost="localhost">
+     <Realm className="org.apache.catalina.realm.LockOutRealm">
+     <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
+     </Realm>
+     <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+               <!-- <Valve className="org.apache.catalina.valves.rewrite.RewriteValve" /> -->
+               <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log" suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+
+     </Host>
+    </Engine>
+  </Service>
+</Server>

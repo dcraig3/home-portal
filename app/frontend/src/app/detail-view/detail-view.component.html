@@ -1,0 +1,166 @@
+<div *ngIf="selectedItem.id != null">
+    <div class="grid-container">
+        <div class="grid-image">
+            <div class="divImg">
+                <img src="data:image/{{selectedItem.imgMime}};base64,{{selectedItem.image}}">
+            </div>
+            <input type="file" #file style="display: none;" onclick="this.value = null" (change)="setimage($event)">
+            <img *ngIf="editingItem" src="../../assets/icons/edit-regular.svg" class="editImageUpload" (click)="file.click()()">
+            <div *ngIf="selectedItem.image == null" class="divImg">
+                <input type="file" #file style="display: none;" onclick="this.value = null" (change)="setimage($event)">
+                <img src="../../assets/icons/plus-solid.svg" class="NoImageFound" (click)="file.click()">
+            </div>
+        </div>
+        <div class="grid-info">
+            <div *ngIf="!editingItem" class="infoLayout">
+                <div>
+                    <span>Name: </span>
+                    <p>{{selectedItem.name}}</p>
+                    <br>
+                    <span>Model Number: </span>
+                    <p>{{selectedItem.model}}</p>
+                    <br>
+                    <span>Serial Number: </span>
+                    <p>{{selectedItem.serial}}</p>
+                    <br>
+                    <span>Date Purchased: </span>
+                    <p>{{selectedItem.date | date}}</p>
+                    <br>
+                    <span>Location: </span>
+                    <p>{{selectedItem.refCode.name}}</p>
+                </div>
+                <div class="editPrintButton">
+                    <img src="../../assets/icons/edit-regular.svg" style="height:1em; margin-right:5px;" (click)="toggleEdit()">
+                    <a style="display:none" #print href="/#/print/{{selectedItem.id}}" target="_blank"></a>
+                    <img src="../../assets/icons/print-solid.svg" style="height:1em;" (click)="print.click()">
+                </div>
+            </div>
+            <div *ngIf="editingItem" class="infoLayout">
+                <div>
+                    <span>Name: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="selectedItem.name">
+                    </mat-form-field>
+                    <br>
+                    <span>Model Number: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="selectedItem.model">
+                    </mat-form-field>
+                    <br>
+                    <span>Serial Number: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="selectedItem.serial">
+                    </mat-form-field>
+                    <br>
+                    <span>Date: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [matDatepicker]="picker" [(ngModel)]="selectedItem.date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <br>
+                    <span>Location: </span>
+                    <mat-form-field>
+                        <mat-select [placeholder]="selectedItem.refCode.name" name="Title" [(ngModel)]="selectedItem.refCode">
+                            <mat-option [value]="r" *ngFor="let r of refCodes;">{{r.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="editButton">
+                    <mat-spinner *ngIf="makingChanges" [diameter]="20"></mat-spinner>
+                    <button mat-button (click)="saveChanges()">Save</button>
+                    <br>
+                    <button mat-button (click)="resetFields()">Cancel</button>
+                    <br>
+                    <button mat-button (click)="itemDeleteWarn()">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-description">
+            <div *ngIf="!editingItem" style="height:100%">
+                <span>Description: </span>
+                <p>{{selectedItem.description}}</p>
+            </div>
+            <div *ngIf="editingItem" class="descriptionEdit">
+                <span>Description: </span>
+                <mat-form-field appearance="outline" class="formTextArea">
+                    <textarea matInput type="text" name="Title" [(ngModel)]="selectedItem.description"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="grid-notes">
+            <div *ngIf="!editingItem" style="height:100%">
+                <span>Notes: </span>
+                <p>{{selectedItem.notes}}</p>
+            </div>
+            <div *ngIf="editingItem" class="notesEdit">
+                <span>Notes: </span>
+                <mat-form-field appearance="outline" class="formTextArea">
+                    <textarea matInput type="text" name="Title" [(ngModel)]="selectedItem.notes"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="grid-documents">
+            <span>Documents:</span>
+            <div class="fileContainer">
+                <div *ngFor="let d of documentsArray" class="documentIcons">
+                    <!-- <div> -->
+                    <div class="selectorDownloadDocument">
+                        <div style="display: inline-flex;width: 100%;">
+                            <img src="../../assets/icons/file-regular.svg" (click)="downloadDocument(d[0])">
+                            <img src="../../assets/icons/times-solid-red.svg" style="height:1em;margin: 0px;" *ngIf="editingItem" (click)="removeDocumentWarn(d[0])">
+                        </div>
+                        <p (click)="downloadDocument(d[0])">{{d[1]}}</p>
+                    </div>
+                    <!-- </div> -->
+                </div>
+                <div class="documentIcons" *ngIf="editingItem">
+                    <input type="file" #file style="display: none;" onclick="this.value = null" (change)="uploadDocument($event)">
+                    <div class="selectorUploadDocument" (click)="file.click()">
+                        <img src="../../assets/icons/plus-solid.svg">
+                        <p>New Document</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-links">
+            <span>Links:</span>
+            <div class="linksContainer">
+                <ul *ngFor="let l of linkArray">
+                    <li class="linkText">
+                        <img src="../../assets/icons/times-solid-red.svg" style="height:1em;margin: 0px;margin-right: 5px;" *ngIf="editingItem" (click)="removeLinkWarning(l.id)">
+                        <a [href]="l.linkAddress">{{l.linkName}}</a>
+                    </li>
+                </ul>
+                <div class="linkIcons" *ngIf="editingItem">
+                    <div class="selectorCreateLink" (click)="addNewLink()">
+                        <ul>
+                            <li>
+                                <img src="../../assets/icons/plus-solid.svg">
+                                <span>New Link</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="newLinksArray != null">
+                        <ul *ngFor="let l of newLinksArray; let i = index" class="newLink">
+                            <li>
+                                <div class="newLinkInformation">
+                                    <span>Link Description: </span>
+                                    <mat-form-field appearance="outline">
+                                        <textarea class="formTextArea" matInput type="text" name="Title" [(ngModel)]="l.linkName"></textarea>
+                                    </mat-form-field>
+                                    <span>Link URL: </span>
+                                    <mat-form-field appearance="outline" style="margin-right: 2em;">
+                                        <textarea class="formTextArea" matInput type="text" name="Title" [(ngModel)]="l.linkAddress"></textarea>
+                                    </mat-form-field>
+                                    <img src="../../assets/icons/check-solid.svg" style="height: 2em;margin-bottom: 2%;" (click)="saveLinks(i)">
+                                    <img src="../../assets/icons/times-solid.svg" style="height: 2em;margin-bottom: 2%;" (click)="removeLinkBuffer(i)">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

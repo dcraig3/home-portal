@@ -1,0 +1,10 @@
+# Frontend
+/frontend/node_modules
+/frontend/dist
+/frontend/target
+/frontend/node/node_modules/npm/node_modules
+/node_modules
+
+# Backend
+/backend/target
+/src

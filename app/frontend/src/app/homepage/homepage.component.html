@@ -1,0 +1,33 @@
+<div style="height: 100%;">
+    <mat-drawer-container class="example-container" hasBackdrop="unset" style="height: 100%;">
+        <mat-drawer #drawer mode="side" position="end" style="width: 50%;">
+            <app-side-panel></app-side-panel>
+        </mat-drawer>
+        <mat-drawer-content>
+            <img src="../../assets/Floor_Plan.png" style="border: 1px solid #000; margin: 1em" width="891" height="775" usemap="#image-map">
+            <map name="image-map">
+                <area alt="LivingRoom1" title="LivingRoom1" coords="84,83,631,303" shape="rect"
+                    (click)="openSideView('Living Room')">
+                <area alt="LivingRoom2" title="LivingRoom2" coords="86,353,362,302" shape="rect"
+                    (click)="openSideView('Living Room')">
+                <area alt="Entryway" title="Entryway" coords="86,354,369,431" shape="rect"
+                    (click)="openSideView('Entryway')">
+                <area alt="Kitchen" title="Kitchen" coords="633,84,810,310" shape="rect" (click)="openSideView('Kitchen')">
+                <area alt="BackRoom" title="BackRoom" coords="370,310,807,431" shape="rect"
+                    (click)="openSideView('Back Room')">
+                <area alt="Bedroom1" title="Bedroom1" coords="87,437,371,557" shape="rect"
+                    (click)="openSideView('Bedroom1')">
+                <area alt="Bedroom2" title="Bedroom2" coords="83,566,369,690" shape="rect"
+                    (click)="openSideView('Bedroom2')">
+                <area alt="Bedroom3" title="Bedroom3" coords="511,559,807,688" shape="rect"
+                    (click)="openSideView('Bedroom3')">
+                <area alt="Bathroom1" title="Bathroom1" coords="514,437,660,554" shape="rect"
+                    (click)="openSideView('Bathroom1')">
+                <area alt="Bathroom2" title="Bathroom2" coords="667,439,806,555" shape="rect"
+                    (click)="openSideView('Bathroom2')">
+                <area alt="Hallway" title="Hallway" coords="372,433,512,687" shape="rect"
+                    (click)="openSideView('Hallway')">
+            </map>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

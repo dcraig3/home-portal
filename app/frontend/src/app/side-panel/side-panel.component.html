@@ -1,0 +1,102 @@
+<div class="sidebar">
+    <div class="MainRoom">
+        <h3>{{activeRoomName}}</h3>
+        <img *ngIf="activeRoomName" src="../../assets/icons/plus-solid.svg" (click)="open(content, activeRoom)">
+    </div>
+    <div *ngFor="let c of children, let i = index">
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="isOpen == i" hideToggle disabled>
+                <mat-expansion-panel-header>
+                    <mat-panel-title (click)="getChildInfomation(c, i)" *ngIf="isEditingRoom != c.id">
+                        {{c.name}}
+                    </mat-panel-title>
+                    <mat-panel-title *ngIf="isEditingRoom == c.id" class="editingRoomInput">
+                        <mat-form-field appearance="outline">
+                            <input matInput type="text" name="Title" [(ngModel)]="c.name">
+                        </mat-form-field>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div style="margin-left: auto;width: 5em;display: inline-flex;" *ngIf="isEditingRoom != c.id">
+                            <img src="../../assets/icons/plus-solid.svg" style="height:10px;width:10px;margin-top:auto;margin-bottom:auto;margin-left:85%;" (click)="open(content, c)">
+                            <img src="../../assets/icons/edit-regular.svg" style="height:10px;width:10px;margin-top:auto;margin-bottom:auto;margin-left:8px;" (click)="editContent(c)">
+                        </div>
+                        <div style="margin-left: auto;width: 10em;display: inline-flex;" *ngIf="isEditingRoom == c.id">
+                            <img src="../../assets/icons/check-solid-green.svg" style="height:15px;width:15px;margin-top:auto;margin-bottom:auto;margin-left:90%;" (click)="saveRoom(c)">
+                            <img src="../../assets/icons/trash-solid-red.svg" style="height:15px;width:15px;margin-top:auto;margin-bottom:auto;margin-left:8px;" (click)="removeRoomWarning(c)">
+                        </div>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-side-panel *ngIf="recursive == c.id" [code]="c.id"></app-side-panel>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div *ngIf="isLoadingItems" style="margin-top: 2em;width: 100px;margin: auto !important;margin-top:2% !important;">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!isLoadingItems" style="display: inline-flex;width: 100%;">
+        <div style="width: 45%;">
+            <div *ngFor="let i of items, let index = index">
+                <div *ngIf="index % 2 == 0" style="margin-top: 2em;">
+                    <mat-card (click)="openDetail(detail, i)">
+                        <img *ngIf="i.image" class="ImageFound" src="data:image/{{i.imgMime}};base64,{{i.image}}">
+                        <div *ngIf="!i.image" style="width:50%;">
+                            <!-- <input type="file" #file style="display: none;" onclick="this.value = null" (change)="uploadImage(i.id, $event)"> -->
+                            <!-- <img src="../../assets/icons/plus-solid.svg" class="NoImageFound" (click)="file.click()"> -->
+                            <img src="../../assets/icons/plus-solid.svg" class="NoImageFound">
+                        </div>
+                        <ul>
+                            <li>Name: {{i.name}}</li>
+                            <li>Model: {{i.model}}</li>
+                            <li>Serial: {{i.serial}}</li>
+                            <li>Date: {{i.date}}</li>
+                            <li>Desc: {{i.description}}</li>
+                        </ul>
+                    </mat-card>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div style="width: 45%;">
+            <div *ngFor="let i of items, let index = index">
+                <div *ngIf="index % 2 == 1" style="margin-top: 2em;">
+                    <mat-card (click)="openDetail(detail, i)">
+                        <img *ngIf="i.image" class="ImageFound" src="data:image/{{i.imgMime}};base64,{{i.image}}">
+                        <div *ngIf="!i.image" style="width:50%;">
+                            <!-- <input type="file" #file style="display: none;" onclick="this.value = null" (change)="uploadImage(i.id, $event)"> -->
+                            <!-- <img src="../../assets/icons/plus-solid.svg" class="NoImageFound" (click)="file.click()"> -->
+                            <img src="../../assets/icons/plus-solid.svg" class="NoImageFound">
+                        </div>
+                        <ul>
+                            <li>Name: {{i.name}}</li>
+                            <li>Model: {{i.model}}</li>
+                            <li>Serial: {{i.serial}}</li>
+                            <li>Date: {{i.date}}</li>
+                            <li>Desc: {{i.description}}</li>
+                        </ul>
+                    </mat-card>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<ng-template #content let-modal let-c="close" let-d="dismiss">
+    <div class="modalHeader">
+        <button mat-button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modalBody">
+        <app-create-item [activeRoom]="childRoom"></app-create-item>
+    </div>
+</ng-template>
+<ng-template #detail let-modal let-c="close" let-d="dismiss">
+    <div class="modalHeader">
+        <button mat-button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modalBody">
+        <app-detail-view [selectedItem]="selectedItem"></app-detail-view>
+    </div>
+</ng-template>

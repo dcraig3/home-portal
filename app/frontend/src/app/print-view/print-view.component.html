@@ -1,0 +1,94 @@
+<div class="page" size="A4">
+    <div class="pageHeader">
+        <h1>
+            {{item.name}}
+        </h1>
+        <div style="width:50%;">
+            <img class="itemImage" src="data:image/{{item.imgMime}};base64,{{item.image}}">
+        </div>
+    </div>
+    <hr>
+    <div class="itemGeneralInfo">
+        <p>
+            Date of purchase:
+        </p>
+        <p class="generalInfoData">
+            {{item.date | date}}
+        </p>
+        <br>
+        <p>
+            Model Number:
+        </p>
+        <p class="generalInfoData">
+            {{item.model}}
+        </p>
+        <br>
+        <p>
+            Serial:
+        </p>
+        <p class="generalInfoData">
+            {{item.serial}}
+        </p>
+        <br>
+        <p>
+            Description:
+        </p>
+        <p class="descriptionInfoData">
+            {{item.description}}
+        </p>
+        <br>
+        <p>
+            Notes:
+        </p>
+        <p class="descriptionInfoData">
+            {{item.notes}}
+        </p>
+    </div>
+    <hr>
+    <div style="display:inline-flex;width:100%">
+        <h3 *ngIf="!hideLinks">
+            Relevant Item Links:
+        </h3>
+        <div class="linkIcons">
+            <img src="../../assets/icons/qrcode-solid.svg" class="linkOrQR no-print" *ngIf="!link2qr && !hideLinks" (click)="toggleLinksType()">
+            <img src="../../assets/icons/link-solid.svg" class="linkOrQR no-print" *ngIf="link2qr && !hideLinks" (click)="toggleLinksType()">
+            <img src="../../assets/icons/eye-slash-solid.svg" class="hideShowIcon no-print" *ngIf="!hideLinks" (click)="hideLinksToggle()">
+            <img src="../../assets/icons/eye-solid.svg" class="hideShowIcon no-print" *ngIf="hideLinks" (click)="hideLinksToggle()">
+        </div>
+    </div>
+    <div style="display: inline-flex;width:100%" *ngIf="!hideLinks && link2qr">
+        <div style="display: inline;width: 45%;margin-left: 2%;">
+            <div *ngFor="let l of linkArray; let i = index">
+                <div class="itemLinkBorder" *ngIf="i % 2 == 0">
+                    <div class="itemLink">
+                        <p style="text-align:center">{{l.linkName}}</p>
+                        <div>
+                            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="l.linkAddress" cssClass="bshadow"></ngx-qrcode>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div style="display: inline;width: 45%;">
+            <div *ngFor="let l of linkArray; let i = index">
+                <div class="itemLinkBorder" *ngIf="i % 2 == 1">
+                    <div class="itemLink">
+                        <p style="text-align:center">{{l.linkName}}</p>
+                        <div>
+                            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="l.linkAddress" cssClass="bshadow"></ngx-qrcode>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div *ngIf="!hideLinks && !link2qr">
+        <ul>
+            <li *ngFor="let l of linkArray">
+                <a [href]="l.linkAddress">{{l.linkAddress}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

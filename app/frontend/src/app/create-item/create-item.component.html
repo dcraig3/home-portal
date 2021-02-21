@@ -1,0 +1,81 @@
+<div style="margin:2em;">
+    <div>
+        <h2>Select item to add</h2>
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="1" (click)="setObject('room')">Space</mat-radio-button>
+            <mat-radio-button value="2" (click)="setObject('item')">Item</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div *ngIf="itemOrRoom == 'room'">
+        <div>
+            <span>Create a new room or space inside of {{activeRoom.name}}</span>
+            <br>
+            <span>Name: </span>
+            <mat-form-field appearance="outline">
+                <input matInput type="text" name="Title" [(ngModel)]="newRoom">
+            </mat-form-field>
+        </div>
+        <img class="saveButton" style="margin-left: 95%" src="../../assets/icons/save-solid.svg" (click)="saveSpace()">
+    </div>
+    <div *ngIf="itemOrRoom == 'item'" class="grid-container">
+        <form class="textInfo">
+            <div>
+                <div class="singleTextItem">
+                    <span>Name: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="item.name">
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="singleTextItem">
+                    <span>Date: </span>
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-label>Date</mat-label> -->
+                        <input matInput type="text" name="Title" [matDatepicker]="picker" [(ngModel)]="item.date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="singleTextItem">
+                    <span>Model: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="item.model">
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="singleTextItem">
+                    <span>Serial: </span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="text" name="Title" [(ngModel)]="item.serial">
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="singleTextItem">
+                    <span>Description: </span>
+                    <mat-form-field appearance="outline" class="formTextArea">
+                        <textarea matInput type="text" name="Title" [(ngModel)]="item.description"></textarea>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="singleTextItem">
+                    <span>Notes: </span>
+                    <mat-form-field appearance="outline" class="formTextArea">
+                        <textarea matInput type="text" name="Title" [(ngModel)]="item.notes"></textarea>
+                    </mat-form-field>
+                </div>
+                <br>
+            </div>
+        </form>
+        <div class="imageInfo">
+            <div *ngIf="!imageData" class="itemImage">
+                <input type="file" #file style="display: none;" onclick="this.value = null" (change)="setimage($event)">
+                <img src="../../assets/icons/image-regular.svg" (click)="file.click()">
+            </div>
+            <div *ngIf="imageData" class="itemImage">
+                <img [src]="imageData" style="max-width: 100%;">
+            </div>
+        </div>
+        <img class="saveButton" src="../../assets/icons/save-solid.svg" (click)="saveItem()">
+    </div>
+</div>
