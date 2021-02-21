@@ -17,7 +17,6 @@
                 <configuration>
                     <nodeVersion>v12.16.1</nodeVersion>
                     <npmVersion>6.13.4</npmVersion>
-                    <!-- <workingDirectory>src/main/web/</workingDirectory> -->
                 </configuration>
                 <executions>
                     <execution>
@@ -26,12 +25,12 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                     </execution>
-                    <execution>
+                    <!-- <execution>
                         <id>npm install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
-                    </execution>
+                    </execution> -->
                     <execution>
                         <id>npm run build</id>
                         <goals>
