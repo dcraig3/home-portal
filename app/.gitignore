@@ -2,7 +2,7 @@
 /frontend/node_modules
 /frontend/dist
 /frontend/target
-/frontend/node/node_modules/npm/node_modules
+#/frontend/node/node_modules/npm/node_modules
 /node_modules
 
 # Backend
