@@ -22,14 +22,14 @@
             <div>
                 <div class="singleTextItem">
                     <span>Name: </span>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="formTextFieldArea">
                         <input matInput type="text" name="Title" [(ngModel)]="item.name">
                     </mat-form-field>
                 </div>
                 <br>
                 <div class="singleTextItem">
                     <span>Date: </span>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="formTextFieldArea">
                         <!-- <mat-label>Date</mat-label> -->
                         <input matInput type="text" name="Title" [matDatepicker]="picker" [(ngModel)]="item.date">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -39,14 +39,14 @@
                 <br>
                 <div class="singleTextItem">
                     <span>Model: </span>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="formTextFieldArea">
                         <input matInput type="text" name="Title" [(ngModel)]="item.model">
                     </mat-form-field>
                 </div>
                 <br>
                 <div class="singleTextItem">
                     <span>Serial: </span>
-                    <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline" class="formTextFieldArea">
                         <input matInput type="text" name="Title" [(ngModel)]="item.serial">
                     </mat-form-field>
                 </div>

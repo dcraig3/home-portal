@@ -83,7 +83,7 @@
             </div>
             <div *ngIf="editingItem" class="descriptionEdit">
                 <span>Description: </span>
-                <mat-form-field appearance="outline" class="formTextArea">
+                <mat-form-field appearance="outline" class="formTextAreaDetail">
                     <textarea matInput type="text" name="Title" [(ngModel)]="selectedItem.description"></textarea>
                 </mat-form-field>
             </div>
@@ -95,7 +95,7 @@
             </div>
             <div *ngIf="editingItem" class="notesEdit">
                 <span>Notes: </span>
-                <mat-form-field appearance="outline" class="formTextArea">
+                <mat-form-field appearance="outline" class="formTextAreaDetail">
                     <textarea matInput type="text" name="Title" [(ngModel)]="selectedItem.notes"></textarea>
                 </mat-form-field>
             </div>
@@ -147,11 +147,11 @@
                                 <div class="newLinkInformation">
                                     <span>Link Description: </span>
                                     <mat-form-field appearance="outline">
-                                        <textarea class="formTextArea" matInput type="text" name="Title" [(ngModel)]="l.linkName"></textarea>
+                                        <textarea class="formTextAreaDetail" matInput type="text" name="Title" [(ngModel)]="l.linkName"></textarea>
                                     </mat-form-field>
                                     <span>Link URL: </span>
                                     <mat-form-field appearance="outline" style="margin-right: 2em;">
-                                        <textarea class="formTextArea" matInput type="text" name="Title" [(ngModel)]="l.linkAddress"></textarea>
+                                        <textarea class="formTextAreaDetail" matInput type="text" name="Title" [(ngModel)]="l.linkAddress"></textarea>
                                     </mat-form-field>
                                     <img src="../../assets/icons/check-solid.svg" style="height: 2em;margin-bottom: 2%;" (click)="saveLinks(i)">
                                     <img src="../../assets/icons/times-solid.svg" style="height: 2em;margin-bottom: 2%;" (click)="removeLinkBuffer(i)">
