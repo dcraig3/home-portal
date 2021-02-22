@@ -2,22 +2,12 @@ FROM maven:3.6.3-jdk-11-openj9 as build-image
 RUN cat /etc/os-release
 RUN apt-get update
 RUN apt-get install -y python3 dos2unix python3-pip
-# RUN apt-get install -y nodejs npm python3 dos2unix python3-pip
-# RUN npm -v
-# RUN node -v
 RUN pip3 install googledrivedownloader jaydebeapi pydrive google-api-python-client
 COPY get_schema.py settings.yaml client_secrets.json mycreds.txt ./
 COPY app /app
 RUN dos2unix ./get_schema.py && python3 ./get_schema.py
 RUN stat /app/backend/src/main/resources/schema.sql
-# WORKDIR /app/frontend
-# RUN npm install semver npmlog config-chain nopt umask gentle-fs find-npm-prefix
-# RUN npm install
-# RUN npm install -g install-peerdeps
-# RUN npm run build
-# RUN npm run-script build
 WORKDIR /app
-# RUN ls /app/frontend/dist/frontend
 RUN mvn clean package
 FROM centos:8
 ENV JAVA_HOME /usr/lib/jvm/jdk-11.0.2/
