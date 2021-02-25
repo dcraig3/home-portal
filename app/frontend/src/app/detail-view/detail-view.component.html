@@ -104,7 +104,6 @@
             <span>Documents:</span>
             <div class="fileContainer">
                 <div *ngFor="let d of documentsArray" class="documentIcons">
-                    <!-- <div> -->
                     <div class="selectorDownloadDocument">
                         <div style="display: inline-flex;width: 100%;">
                             <img src="../../assets/icons/file-regular.svg" (click)="downloadDocument(d[0])">
@@ -112,7 +111,14 @@
                         </div>
                         <p (click)="downloadDocument(d[0])">{{d[1]}}</p>
                     </div>
-                    <!-- </div> -->
+                </div>
+                <div *ngIf="documentsArray?.length > 0" class="documentIcons">
+                    <div class="selectorDownloadDocument">
+                        <div style="display: inline-flex;width: 100%;">
+                            <img src="../../assets/icons/file-archive-solid.svg" (click)="downloadZip()">
+                        </div>
+                        <p (click)="downloadZip()">All files</p>
+                    </div>
                 </div>
                 <div class="documentIcons" *ngIf="editingItem">
                     <input type="file" #file style="display: none;" onclick="this.value = null" (change)="uploadDocument($event)">

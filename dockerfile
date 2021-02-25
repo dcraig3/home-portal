@@ -5,7 +5,8 @@ RUN apt-get install -y python3 dos2unix python3-pip
 RUN pip3 install googledrivedownloader jaydebeapi pydrive google-api-python-client
 COPY get_schema.py settings.yaml client_secrets.json mycreds.txt ./
 COPY app /app
-RUN dos2unix ./get_schema.py && python3 ./get_schema.py
+RUN dos2unix ./get_schema.py
+RUN python3 ./get_schema.py
 RUN stat /app/backend/src/main/resources/schema.sql
 WORKDIR /app
 RUN mvn clean package
@@ -58,4 +59,5 @@ COPY --from=build-image /app/backend/target/backend-0.0.1-SNAPSHOT.war /opt/tomc
 COPY backup.py settings.yaml client_secrets.json mycreds.txt BackupNow.py ./
 COPY h2-1.4.197.jar ./h2.jar
 EXPOSE 8080
-ENTRYPOINT python3 /opt/tomcat/backup.py & catalina.sh run
+# ENTRYPOINT python3 /opt/tomcat/backup.py & catalina.sh run
+ENTRYPOINT catalina.sh run

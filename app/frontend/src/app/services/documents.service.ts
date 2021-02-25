@@ -29,6 +29,16 @@ export class DocumentsService {
     });
   }
 
+  downloadAllAsZip(itemId) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/octet-stream');
+    headers.set('Accept', 'text/plain');
+    return this.http.get(`${environment.mainAPIUrl}/Documents/downloadZip?itemId=${itemId}`, {
+      headers, responseType: 'blob',
+      observe: 'response'
+    });
+  }
+
   getDocumentList(itemId) {
     return this.http.get(`${environment.mainAPIUrl}/Documents/fromRef?id=${itemId}`);
   }

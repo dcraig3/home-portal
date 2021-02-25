@@ -102,6 +102,12 @@ export class DetailViewComponent implements OnInit {
     }
   }
 
+  downloadZip() {
+    this.documentService.downloadAllAsZip(this.selectedItem.id).toPromise().then(res => {
+      this.saveToFileSystem(res);
+    });
+  }
+
   private saveToFileSystem(response) {
     const contentDispositionHeader: string = response.headers.get(
       'Content-Disposition'

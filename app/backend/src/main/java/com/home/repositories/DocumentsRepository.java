@@ -20,4 +20,7 @@ public interface DocumentsRepository  extends JpaRepository<Documents, Long> {
     @Query("select d from Documents d where d.id = :id")
     public Documents getById(long id);
 
+    @Query("select d from Documents d where d.itemId = :itemId")
+    public List<Documents> getDocsByItemId(long itemId);
+
 }
