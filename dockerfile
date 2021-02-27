@@ -59,5 +59,5 @@ COPY --from=build-image /app/backend/target/backend-0.0.1-SNAPSHOT.war /opt/tomc
 COPY backup.py settings.yaml client_secrets.json mycreds.txt BackupNow.py ./
 COPY h2-1.4.197.jar ./h2.jar
 EXPOSE 8080
-# ENTRYPOINT python3 /opt/tomcat/backup.py & catalina.sh run
-ENTRYPOINT catalina.sh run
+ENTRYPOINT python3 /opt/tomcat/backup.py & catalina.sh run
+# ENTRYPOINT catalina.sh run
