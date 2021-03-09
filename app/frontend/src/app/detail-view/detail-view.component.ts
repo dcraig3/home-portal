@@ -22,6 +22,7 @@ export class DetailViewComponent implements OnInit {
   linkArray: any;
   newLinksArray: any[] = [];
   refCodes: any;
+  documentsArrayByLine: any;
 
   constructor(
     private refCodeService: RefCodesService,

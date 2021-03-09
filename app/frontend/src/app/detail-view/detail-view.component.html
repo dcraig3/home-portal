@@ -105,26 +105,34 @@
             <div class="fileContainer">
                 <div *ngFor="let d of documentsArray" class="documentIcons">
                     <div class="selectorDownloadDocument">
-                        <div style="display: inline-flex;width: 100%;">
+                        <div style="display: inline-flex;width: 15%;">
                             <img src="../../assets/icons/file-regular.svg" (click)="downloadDocument(d[0])">
                             <img src="../../assets/icons/times-solid-red.svg" style="height:1em;margin: 0px;" *ngIf="editingItem" (click)="removeDocumentWarn(d[0])">
                         </div>
-                        <p (click)="downloadDocument(d[0])">{{d[1]}}</p>
+                        <div (click)="downloadDocument(d[0])" style="width: 100%; height: 3em; margin: auto;">
+                            <p>{{d[1]}}</p>
+                        </div>
                     </div>
                 </div>
                 <div *ngIf="documentsArray?.length > 0" class="documentIcons">
                     <div class="selectorDownloadDocument">
-                        <div style="display: inline-flex;width: 100%;">
+                        <div style="display: inline-flex;width: 15%;">
                             <img src="../../assets/icons/file-archive-solid.svg" (click)="downloadZip()">
                         </div>
-                        <p (click)="downloadZip()">All files</p>
+                        <div (click)="downloadZip()" style="width: 100%; height: 3em; margin: auto;">
+                            <p (click)="downloadZip()">All files</p>
+                        </div>
                     </div>
                 </div>
                 <div class="documentIcons" *ngIf="editingItem">
                     <input type="file" #file style="display: none;" onclick="this.value = null" (change)="uploadDocument($event)">
-                    <div class="selectorUploadDocument" (click)="file.click()">
-                        <img src="../../assets/icons/plus-solid.svg">
-                        <p>New Document</p>
+                    <div class="selectorDownloadDocument" (click)="file.click()">
+                        <div style="display: inline-flex;width: 15%;">
+                            <img src="../../assets/icons/plus-solid.svg">
+                        </div>
+                        <div style="width: 100%; height: 3em; margin: auto;">
+                            <p>New Document</p>
+                        </div>
                     </div>
                 </div>
             </div>

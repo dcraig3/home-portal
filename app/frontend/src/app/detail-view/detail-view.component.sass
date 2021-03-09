@@ -1,7 +1,7 @@
 .grid-container
   display: grid
   grid-template-columns: 1fr 1fr
-  grid-template-rows: .5fr 0.75fr 1.5fr 1.5fr
+  grid-template-rows: 25em 20em 25em
   grid-gap: 10px
   padding: 10px
 
@@ -149,7 +149,7 @@
 
 .grid-documents
     grid-column-start: 1
-    grid-column-end: 3
+    grid-column-end: 2
     grid-row-start: 3
     grid-row-end: 4
 
@@ -160,10 +160,10 @@
     border-radius: 10px
     overflow: hidden
     overflow-y: scroll
-    display: flex
+    // display: flex
     padding: 1em
 
-.documentIcons
+.documentIconsExtra
     width: 15%
     height: 45%
     margin-left: 2%
@@ -183,15 +183,20 @@
 .selectorDownloadDocument
     // cursor: pointer
     width: 100%
+    display: flex
+    border: 1px solid #000000
+    border-radius: 10px
+    margin: 1em 0px
+    padding: 10px 0px
 
 .selectorDownloadDocument img, .selectorDownloadDocument p
     cursor: pointer
 
 .grid-links
-    grid-column-start: 1
+    grid-column-start: 2
     grid-column-end: 3
-    grid-row-start: 4
-    grid-row-end: 5
+    grid-row-start: 3
+    grid-row-end: 4
     
 .linksContainer
     width: 98%
