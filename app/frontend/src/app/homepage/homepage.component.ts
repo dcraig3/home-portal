@@ -26,7 +26,6 @@ export class HomepageComponent implements OnInit {
   }
 
   openSideView(string) {
-    console.log(string);
     this.roomService.setRoom(string);
     this.drawer.toggle();
   }
