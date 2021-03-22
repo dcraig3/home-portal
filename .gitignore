@@ -7,3 +7,4 @@ app/frontend/package-lock.json
 app/frontend/dist
 app/backend/src/main/resources/schema.sql
 app/backend/src/target
+fileName.sql

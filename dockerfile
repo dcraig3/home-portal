@@ -5,9 +5,10 @@ RUN apt-get install -y python3 dos2unix python3-pip
 RUN pip3 install googledrivedownloader jaydebeapi pydrive google-api-python-client
 COPY get_schema.py settings.yaml client_secrets.json mycreds.txt ./
 COPY app /app
-RUN dos2unix ./get_schema.py
-RUN python3 ./get_schema.py
-RUN stat /app/backend/src/main/resources/schema.sql
+# RUN dos2unix ./get_schema.py
+# RUN python3 ./get_schema.py
+COPY fileName.sql /app/backend/src/main/resources/schema.sql
+# RUN stat /app/backend/src/main/resources/schema.sql
 WORKDIR /app
 RUN mvn clean package
 FROM centos:8
@@ -21,8 +22,8 @@ RUN yum repolist all
 RUN yum -y update; yum clean all
 RUN yum -y install nano unzip mod_ssl python3 dos2unix
 RUN pip3 install jaydebeapi
-RUN pip3 install pydrive
-RUN pip3 install google-api-python-client
+# RUN pip3 install pydrive
+# RUN pip3 install google-api-python-client
 RUN curl -o /openjdk-11.0.2_linux-x64_bin.tar.gz https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
 RUN tar xvf openjdk-11.0.2_linux-x64_bin.tar.gz -C /usr/lib/jvm
 RUN java --version
@@ -56,7 +57,8 @@ ARG CACHE_BUSTER=1
 VOLUME /opt/tomcat
 WORKDIR /opt/tomcat
 COPY --from=build-image /app/backend/target/backend-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war
-COPY backup.py settings.yaml client_secrets.json mycreds.txt BackupNow.py ./
+COPY backup.py settings.yaml client_secrets.json mycreds.txt BackupNow.py BackupLocal.py ./
+RUN mkdir -p /localbackup
 COPY h2-1.4.197.jar ./h2.jar
 EXPOSE 8080
 ENTRYPOINT python3 /opt/tomcat/backup.py & catalina.sh run
