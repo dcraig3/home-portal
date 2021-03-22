@@ -3,7 +3,7 @@ RUN cat /etc/os-release
 RUN apt-get update
 RUN apt-get install -y python3 dos2unix python3-pip
 RUN pip3 install googledrivedownloader jaydebeapi pydrive google-api-python-client
-COPY get_schema.py settings.yaml client_secrets.json mycreds.txt ./
+# COPY settings.yaml client_secrets.json mycreds.txt ./
 COPY app /app
 # RUN dos2unix ./get_schema.py
 # RUN python3 ./get_schema.py
