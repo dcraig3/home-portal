@@ -57,7 +57,7 @@ ARG CACHE_BUSTER=1
 VOLUME /opt/tomcat
 WORKDIR /opt/tomcat
 COPY --from=build-image /app/backend/target/backend-0.0.1-SNAPSHOT.war /opt/tomcat/webapps/ROOT.war
-COPY backup.py settings.yaml client_secrets.json mycreds.txt BackupNow.py BackupLocal.py ./
+COPY backup.py BackupNow.py BackupLocal.py ./
 RUN mkdir -p /localbackup
 COPY h2-1.4.197.jar ./h2.jar
 EXPOSE 8080
